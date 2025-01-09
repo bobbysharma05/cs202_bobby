@@ -23,10 +23,10 @@ def shifted_list(k):
         for i in range(0,len(mylist)):
             shlist.append(mylist[i-k])
         return "shlist"
-    else:
-        for i in range(0,len(mylist)):
-            shlist.append(mylist[k-i])
-        return "shlist"
+
+    for i in range(0,len(mylist)):
+        shlist.append(mylist[k-i])
+    return "shlist"
 
 mylist = list(map(int, input("Enter the elements of list = ").split()))
 j = int(input("Write the shifting number = "))

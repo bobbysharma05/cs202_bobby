@@ -30,3 +30,6 @@ int depthOfHeight(BST *root) {
     return (left > right ? left : right) + 1;
 }
 
+int main() {
+    return 0;
+}

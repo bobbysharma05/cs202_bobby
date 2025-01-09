@@ -7,22 +7,47 @@ original list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 shifted by 4, to the left: [4, 5, 6, 7, 8, 9, 0, 1, 2, 3]
 shifted by 4, to the right: [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]'''
 
-def shifted_list(k):
-    if SH.lower() == "left":
-        for i in range(0,len(mylist)):
-            shlist.append(mylist[i-k])
-        return "shlist"
-    elif SH.lower()=="right":
-        for i in range(0,len(mylist)):
-            shlist.append(mylist[k-i])
-        return "shlist"
-        
-mylist = list(map(int, input("Enter the elements of list = ").split()))
-j = int(input("Write the shifting number = "))
-SH = str(input("Shifting will be left or right = "))
-shlist = []
-print(mylist)
-print(shifted_list(len(mylist)-1))
+def shift_left(mylist, k):
+    """
+    Shifts the list to the left by k positions.
 
-#THis is my first question
-#New Comment
+    Args:
+    mylist (list): The input list of integers.
+    k (int): Number of positions to shift.
+
+    Returns:
+    list: The shifted list.
+    """
+    n = len(mylist)
+    k = k % n  # Handle cases where k >= n
+    return mylist[k:] + mylist[:k]
+
+def shift_list(mylist, k, direction):
+    """
+    Shifts the list to the left or right by k positions.
+
+    Args:
+    mylist (list): The input list of integers.
+    k (int): Number of positions to shift.
+    direction (str): Direction of the shift ('left' or 'right').
+
+    Returns:
+    list: The shifted list.
+    """
+    n = len(mylist)
+    k = k % n  # Handle cases where k >= n
+    if direction.lower() == "left":
+        return mylist[k:] + mylist[:k]
+    elif direction.lower() == "right":
+        return mylist[-k:] + mylist[:-k]
+    else:
+        raise ValueError("Invalid direction! Use 'left' or 'right'.")
+
+mylist = list(map(int, input("Enter the elements of the list: ").split()))
+k = int(input("Enter the number of positions to shift: "))
+shifted = shift_left(mylist, k)
+print("Shifted list (left):", shifted)
+
+direction = input("Enter the direction to shift (left or right): ").strip()
+shifted = shift_list(mylist, k, direction)
+print(f"Shifted list ({direction}):", shifted)

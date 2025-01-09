@@ -19,7 +19,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
-          name: "Say hello"
+          name: "Compile"
           command: "echo Hello, World!"
 
 # Orchestrate jobs using workflows
